@@ -82,8 +82,13 @@ export default {
             url: '/authorizations',
             data: this.formData
           }).then(result => {
-            window.localStorage.setItem('use-info', JSON.stringify(result.data.data))
+            window.localStorage.setItem('user-info', JSON.stringify(result.data))
             this.$router.push('/home')
+          }).catch(() => {
+            this.$message({
+              message: '用户名或密码错误,请重新输入',
+              type: 'warning'
+            })
           })
         }
       })
@@ -111,6 +116,7 @@ export default {
           text-align: center;
           img {
             width: 200px;
+            margin-bottom: 15px;
           }
         }
       }
